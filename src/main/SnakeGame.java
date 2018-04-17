@@ -84,29 +84,24 @@ public class SnakeGame extends AbstractGame {
 	}
 
 	public Memento saveToMemento() {
-		return new Memento(this.map, this.snake, this.apple);
+		return new Memento(this.snake, this.apple);
 	}
 
 	public void load(Memento savedState) {
-		this.map = savedState.getMap();
+		this.map = new Map();
 		this.snake = savedState.getSnake();
 		this.apple = savedState.getApple();
 	}
 
 	public static class Memento {
-		private Map savedMap;
 		private Snake savedSnake;
 		private Block savedApple;
 
-		public Memento(Map savedMap, Snake savedSnake, Block savedApple) {
-			this.savedMap = new Map();
-			this.savedMap.getBlocks().addAll(savedMap.getBlocks());
-
+		public Memento(Snake savedSnake, Block savedApple) {
 			this.savedSnake = new Snake();
 			this.savedSnake.turn(savedSnake.getDirection());
 			this.savedSnake.getBody().clear();
 			this.savedSnake.getBody().addAll(savedSnake.getBody());
-
 			this.savedApple = new Block(savedApple.getX(), savedApple.getY());
 		}
 
@@ -121,12 +116,6 @@ public class SnakeGame extends AbstractGame {
 		public Block getApple() {
 			Block apple = new Block(this.savedApple.getX(), this.savedApple.getY());
 			return apple;
-		}
-
-		public Map getMap() {
-			Map map = new Map();
-			map.getBlocks().addAll(savedMap.getBlocks());
-			return savedMap;
 		}
 	}
 
