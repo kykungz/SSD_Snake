@@ -2,6 +2,7 @@
 > Software Specification & Design Lecture Homework
 
 Snake Game using Memento Design Pattern.
+
 https://github.com/kykungz/SSD_Snake_Game
 
 ### Members
